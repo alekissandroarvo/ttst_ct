@@ -1,0 +1,18 @@
+ListView.builder(
+          itemCount: widget.lista.length,
+          itemBuilder: (context, index) {
+            return Column(
+              children: <Widget>[
+                Text("Serviço Fora:"),
+                Text(widget.lista[index].servico),
+                Text("Cobertura:"),
+                Text(widget.lista[index].cobertura),
+                Text("Link inoperante"),
+                Text(widget.lista[index].link),
+                Text("Link Alternativo"),
+                Text(widget.lista[index].linkAlternativo),
+              ],
+            );
+          }
+          // This trailing comma makes auto-formatting nicer for build methods.
+          ),
