@@ -56,76 +56,13 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   List<SituacaoModel> lista;
   MyHomePage({Key key, this.lista}) : super(key: key);
-
-  final _formKey = GlobalKey<FormState>();
-  final siteController = TextEditingController();
-  final linkController = TextEditingController();
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: TTSTDrawer(
-        lista: this.lista,
-      ),
       appBar: AppBar(
         title: Text("Situação Operacional"),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(10),
-        child: ListView(
-          children: <Widget>[
-            Form(
-                key: _formKey,
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      "Localidade da pane",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    TextFormField(
-                      controller: siteController,
-                      decoration: InputDecoration(
-                        hintText: "Assis",
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: 10,
-                    ),
-                    Text(
-                      "Link Inoperante",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    TextFormField(
-                      controller: linkController,
-                      decoration: InputDecoration(
-                        hintText: "OI",
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1),
-                        ),
-                      ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        List<SituacaoModel> filtro = [];
-                        filtro.addAll(this.lista.where((element) =>
-                            element.site == siteController.text &&
-                            element.link == linkController.text));
-
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SituacaoPage(
-                                lista: filtro,
-                              ),
-                            ));
-                      },
-                      child: Text("Get Situation"),
-                    )
-                  ],
-                ))
-          ],
-        ),
+      body: Center(
+        child: Text("APP das Situações Operacioanis"),
       ),
     );
   }

@@ -1,128 +1,86 @@
 import 'package:flutter/material.dart';
+import 'package:excel/excel.dart';
 import 'models/situacao_model.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
-class SituacaoPage extends StatefulWidget {
-  final List<SituacaoModel> lista;
+import 'comuns/mydrawer.dart';
+import 'situacao_answer.dart';
+
+class SituacaoPage extends StatelessWidget {
+  List<SituacaoModel> lista;
   SituacaoPage({Key key, this.lista}) : super(key: key);
-  @override
-  _SituacaoPageState createState() => _SituacaoPageState();
-}
 
-class _SituacaoPageState extends State<SituacaoPage> {
-  @override
+  final _formKey = GlobalKey<FormState>();
+  final siteController = TextEditingController();
+  final linkController = TextEditingController();
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Situação operacional"),
+      drawer: TTSTDrawer(
+        lista: this.lista,
       ),
-      body: ListView.builder(
-          itemCount: widget.lista.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        "Site:",
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      Container(
-                        width: 10,
-                      ),
-                      Text(
-                        widget.lista[index].site,
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        "Link inoperante:",
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      Container(
-                        width: 10,
-                      ),
-                      Text(
-                        widget.lista[index].link,
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ],
-                  ),
-                  Row(children: <Widget>[
+      appBar: AppBar(
+        title: Text("Situação Operacional"),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(10),
+        child: ListView(
+          children: <Widget>[
+            Form(
+                key: _formKey,
+                child: Column(
+                  children: <Widget>[
+                    // Trecho para averiguar impacto via TextFormField
                     Text(
-                      "Serviço Fora:",
+                      "Localidade da pane",
                       style: TextStyle(fontSize: 18),
+                    ),
+                    TextFormField(
+                      controller: siteController,
+                      decoration: InputDecoration(
+                        hintText: "CT",
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(width: 1),
+                        ),
+                      ),
                     ),
                     Container(
-                      width: 10,
+                      height: 10,
                     ),
                     Text(
-                      widget.lista[index].servico,
+                      "Link Inoperante",
                       style: TextStyle(fontSize: 18),
                     ),
-                    Container(
-                      width: 10,
+                    TextFormField(
+                      controller: linkController,
+                      decoration: InputDecoration(
+                        hintText: "OI",
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(width: 1),
+                        ),
+                      ),
                     ),
-                    Text(
-                      widget.lista[index].setor,
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ]),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        "Cobertura:",
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      Container(
-                        width: 10,
-                      ),
-                      Text(
-                        widget.lista[index].cobertura,
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        "Link Alternativo:",
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      Container(
-                        width: 10,
-                      ),
-                      Text(
-                        widget.lista[index].linkAlternativo,
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        "Serviço Alternativo:",
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      Container(
-                        width: 10,
-                      ),
-                      Text(
-                        widget.lista[index].servicoAlternativo,
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            );
-          }
-          // This trailing comma makes auto-formatting nicer for build methods.
-          ),
+                    ElevatedButton(
+                      onPressed: () {
+                        List<SituacaoModel> filtro = [];
+                        filtro.addAll(this.lista.where((element) =>
+                            element.site == siteController.text &&
+                            element.link == linkController.text));
+
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SituacaoAnswerPage(
+                                lista: filtro,
+                              ),
+                            ));
+                      },
+                      child: Text("Get Situation"),
+                    )
+                  ],
+                ))
+          ],
+        ),
+      ),
     );
   }
 }
