@@ -58,6 +58,9 @@ class MyHomePage extends StatelessWidget {
   MyHomePage({Key key, this.lista}) : super(key: key);
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: TTSTDrawer(
+        lista: lista,
+      ),
       appBar: AppBar(
         title: Text("Situação Operacional"),
       ),
