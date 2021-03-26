@@ -52,3 +52,43 @@ class SituacaoModel {
     return super.toString();
   }
 }
+
+class Busca {
+  String id;
+  String local;
+  String servico;
+  String descricaoServico;
+  String canal;
+  String designacao;
+  String conexoes;
+  String central;
+
+  Busca(
+      {String id,
+      String local,
+      String servico,
+      String descricaoServico,
+      String canal,
+      String designacao,
+      String conexoes,
+      String central}) {
+    this.id = id;
+    this.local = local;
+    this.servico = servico;
+    this.descricaoServico = descricaoServico;
+    this.canal = canal;
+    this.designacao = designacao;
+    this.conexoes = conexoes;
+    this.central = central;
+  }
+  Busca.lista(List<String> lista) {
+    this.id = lista[0];
+    this.local = lista[1];
+    this.servico = lista[2];
+    this.descricaoServico = lista[3];
+    this.canal = lista[4];
+    this.designacao = lista[5];
+    this.conexoes = lista[6];
+    this.central = lista[7];
+  }
+}

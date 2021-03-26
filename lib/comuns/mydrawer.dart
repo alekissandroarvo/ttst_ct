@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:ttst_ct/busca_planilha.dart';
 import 'package:ttst_ct/models/situacao_model.dart';
 import '../situacao.dart';
 
 class TTSTDrawer extends StatelessWidget {
   final List<SituacaoModel> lista;
-  TTSTDrawer({Key key, this.lista}) : super(key: key);
+  final List<Busca> lista2;
+  TTSTDrawer({Key key, this.lista, this.lista2}) : super(key: key);
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
@@ -27,6 +29,19 @@ class TTSTDrawer extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (context) => SituacaoPage(
                           lista: lista,
+                        ),
+                      ));
+                }),
+          ),
+          Card(
+            child: ListTile(
+                title: Text("Pesquisa"),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BuscaWidget(
+                          lista: lista2,
                         ),
                       ));
                 }),
