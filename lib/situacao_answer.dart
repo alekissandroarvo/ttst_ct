@@ -18,12 +18,37 @@ class _SituacaoAnswerPageState extends State<SituacaoAnswerPage> {
       body: ListView.builder(
           itemCount: widget.lista.length,
           itemBuilder: (context, index) {
+            String apresentacao = '''
+            Site: ${widget.lista[index].site},
+            Link Inoperante: ${widget.lista[index].link},
+            Serviço Inoperante: ${widget.lista[index].servico},
+            Cobertura: ${widget.lista[index].servico} ${widget.lista[index].cobertura}
+            Serviço Alternativo: 
+            QRG:${widget.lista[index].servicoAlternativo} Link:${widget.lista[index].linkAlternativo}
+            ''';
             return Padding(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Row(
-                    children: <Widget>[
+                  SelectableText.rich(
+                    TextSpan(
+                      text: "$apresentacao",
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                    showCursor: true,
+                    cursorColor: Colors.blue,
+                    cursorWidth: 5,
+                    cursorRadius: Radius.circular(5),
+                    toolbarOptions: ToolbarOptions(
+                      copy: true,
+                      selectAll: true,
+                    ),
+                    scrollPhysics: ClampingScrollPhysics(),
+                  ),
+                  /*
                       Text(
                         "Site:",
                         style: TextStyle(fontSize: 18),
@@ -95,10 +120,6 @@ class _SituacaoAnswerPageState extends State<SituacaoAnswerPage> {
                       Container(
                         width: 10,
                       ),
-                      Text(
-                        "operacionais",
-                        style: TextStyle(fontSize: 18),
-                      ),
                     ],
                   ),
                   Row(
@@ -128,9 +149,7 @@ class _SituacaoAnswerPageState extends State<SituacaoAnswerPage> {
                       Text(
                         widget.lista[index].servicoAlternativo,
                         style: TextStyle(fontSize: 18),
-                      ),
-                    ],
-                  ),
+                      ),*/
                 ],
               ),
             );
