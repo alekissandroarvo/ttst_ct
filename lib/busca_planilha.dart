@@ -12,7 +12,7 @@ class BuscaWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("TTST-CT"),
+          title: Text("TTST CINDACTA II"),
         ),
         body: Padding(
           padding: EdgeInsets.all(10),
@@ -58,7 +58,8 @@ class BuscaWidget extends StatelessWidget {
                         onPressed: () {
                           List<Busca> filtro = [];
                           filtro.addAll(this.lista.where((element) =>
-                              element.local.contains(siteController.text) &&
+                              element.local.toLowerCase().contains(
+                                  siteController.text.toLowerCase()) &&
                               element.descricaoServico
                                   .contains(descricaoServicoController.text)));
                           Navigator.push(

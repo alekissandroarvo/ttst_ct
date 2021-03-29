@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'models/situacao_model.dart';
+import 'main.dart';
 
 class BuscaResposta extends StatelessWidget {
   final List<Busca> lista;
@@ -8,6 +9,15 @@ class BuscaResposta extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("TTST CINDACTA II"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.home),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MyHomePage()));
+            },
+          ),
+        ],
       ),
       body: ListView.builder(
           itemCount: this.lista.length,

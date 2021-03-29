@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:excel/excel.dart';
+
 import 'models/situacao_model.dart';
-import 'package:flutter/services.dart' show rootBundle;
+
+import 'main.dart';
 
 import 'comuns/mydrawer.dart';
 import 'situacao_answer.dart';
 
 class SituacaoPage extends StatelessWidget {
-  List<SituacaoModel> lista;
+  final List<SituacaoModel> lista;
   SituacaoPage({Key key, this.lista}) : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
@@ -19,7 +20,16 @@ class SituacaoPage extends StatelessWidget {
         lista: this.lista,
       ),
       appBar: AppBar(
-        title: Text("Situação Operacional"),
+        title: Text("TTST CINDACTA2"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.home),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MyHomePage()));
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: EdgeInsets.all(10),

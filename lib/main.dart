@@ -79,10 +79,13 @@ class MyHomePage extends StatelessWidget {
         lista2: lista2,
       ),
       appBar: AppBar(
-        title: Text("Situação Operacional"),
+        title: Text("TTST CINDACTA2"),
       ),
       body: Center(
-        child: Text("APP das Situações Operacioanis"),
+        child: Text(
+          "APP das Situações Operacioanis",
+          style: TextStyle(fontSize: 20),
+        ),
       ),
     );
   }
