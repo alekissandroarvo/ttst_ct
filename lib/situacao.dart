@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'models/situacao_model.dart';
 
 import 'main.dart';
+import 'package:provider/provider.dart';
 
 import 'comuns/mydrawer.dart';
 import 'situacao_answer.dart';
@@ -11,14 +12,14 @@ class SituacaoPage extends StatelessWidget {
   final List<SituacaoModel> lista;
   SituacaoPage({Key key, this.lista}) : super(key: key);
 
+  SituacaoModel obj = new SituacaoModel.createList();
+
   final _formKey = GlobalKey<FormState>();
   final siteController = TextEditingController();
   final linkController = TextEditingController();
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: TTSTDrawer(
-        lista: this.lista,
-      ),
+      drawer: TTSTDrawer(),
       appBar: AppBar(
         title: Text("TTST CINDACTA2"),
         actions: <Widget>[
@@ -72,7 +73,7 @@ class SituacaoPage extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         List<SituacaoModel> filtro = [];
-                        filtro.addAll(this.lista.where((element) =>
+                        filtro.addAll(obj.lista_situacao.where((element) =>
                             element.site == siteController.text &&
                             element.link == linkController.text));
 

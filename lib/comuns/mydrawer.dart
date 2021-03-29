@@ -4,9 +4,8 @@ import 'package:ttst_ct/models/situacao_model.dart';
 import '../situacao.dart';
 
 class TTSTDrawer extends StatelessWidget {
-  final List<SituacaoModel> lista;
   final List<Busca> lista2;
-  TTSTDrawer({Key key, this.lista, this.lista2}) : super(key: key);
+  TTSTDrawer({Key key, this.lista2}) : super(key: key);
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
@@ -27,9 +26,7 @@ class TTSTDrawer extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => SituacaoPage(
-                          lista: lista,
-                        ),
+                        builder: (context) => SituacaoPage(),
                       ));
                 }),
           ),
@@ -40,9 +37,7 @@ class TTSTDrawer extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => BuscaWidget(
-                          lista: lista2,
-                        ),
+                        builder: (context) => BuscaWidget(),
                       ));
                 }),
           ),

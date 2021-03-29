@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ttst_ct/busca_planilha_answer.dart';
 import 'package:ttst_ct/models/situacao_model.dart';
+import 'models/situacao_model.dart';
 
 class BuscaWidget extends StatelessWidget {
-  final List<Busca> lista;
-  BuscaWidget({Key key, this.lista}) : super(key: key);
-
   final _formKey = GlobalKey<FormState>();
   final siteController = TextEditingController();
   final descricaoServicoController = TextEditingController();
   Widget build(BuildContext context) {
+    Busca obj = new Busca.createList();
     return Scaffold(
         appBar: AppBar(
           title: Text("TTST CINDACTA II"),
@@ -57,7 +56,7 @@ class BuscaWidget extends StatelessWidget {
                     ElevatedButton(
                         onPressed: () {
                           List<Busca> filtro = [];
-                          filtro.addAll(this.lista.where((element) =>
+                          filtro.addAll(obj.listaBusca.where((element) =>
                               element.local.toLowerCase().contains(
                                   siteController.text.toLowerCase()) &&
                               element.descricaoServico
